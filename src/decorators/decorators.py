@@ -1,7 +1,7 @@
 import time
 import logging
 
-# Configuración básica de logging: Definir formato de mensaje de registro (marca de tiempo - nivel de mensaje - mensaje)
+#Configuración básica de logging: Definir formato de mensaje de registro (marca de tiempo - nivel de mensaje - mensaje)
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
 
 #Decorador para medir tiempo de ejecución de una función

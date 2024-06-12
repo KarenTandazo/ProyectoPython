@@ -51,14 +51,12 @@ def obtener_productos(url):
     soup=scrape(url)
     productos=[]
 
-    #Adaptar los selectores a la estructura del sitio a scrapear (mediante clase)
     items=soup.select(".product-item")
     for item in items:
         nombre_item=item.select_one('.product-item-link')
         precio_item=item.select_one(".price-wrapper .price")
         marca_item = item.select_one(".product-item-brand strong")
 
-        #Ciclo para controlar que ambos elementos existan antes de acceder a su texto/contenido
         if nombre_item and precio_item:
             nombre=nombre_item.get_text(strip=True)
             precio=precio_item.get_text(strip=True)

@@ -1,6 +1,7 @@
 import pandas as pd
 import os
 from ..decorators.decorators import dec_logging, dec_tiempo
+from fpdf import FPDF
 
 @dec_logging
 @dec_tiempo
@@ -66,6 +67,37 @@ def guardar_data_limpia(df, archivo_salida):
 
 @dec_logging
 @dec_tiempo
+def guardar_pdf(df, archivo_pdf):
+    """
+    Guarda los datos limpios en un archivo PDF.
+
+    Args:
+        df (DataFrame): DataFrame de pandas con los datos limpios a guardar.
+        archivo_pdf (str): Ruta del archivo de salida donde se guardarán los datos (PDF).
+    """    
+    pdf = FPDF()
+    pdf.add_page()
+
+    tamano_columna = {'Marca': 30, 'Producto': 140, 'Precio': 20}
+    tamano_fila = pdf.font_size * 2
+
+    pdf.set_font("helvetica", "B", size=10)
+    for columna in df.columns:
+        pdf.cell(tamano_columna[columna], tamano_fila, columna, border=1, align='C')
+    pdf.ln(tamano_fila)
+
+    pdf.set_font("helvetica", size=10)
+    for fila in df.itertuples(index=False):
+        for i, celda in enumerate(fila):
+            columna = df.columns[i]
+            pdf.cell(tamano_columna[columna], tamano_fila, str(celda), border=1, align='L')
+        pdf.ln(tamano_fila)
+
+    pdf.output(archivo_pdf)
+    print(f"Nueva data guardada exitosamente en PDF en {archivo_salida}")
+
+@dec_logging
+@dec_tiempo
 def calcular_estadisticas(df):
     """
     Calcula estadísticas básicas de los productos
@@ -117,11 +149,13 @@ def guardar_estadisticas(estadistica_basica, highest_products, smallest_products
 if __name__ == "__main__":
     archivo_entrada="./data/raw/productos.csv"
     archivo_salida="./data/processed/productosProcesados.csv"
+    archivo_pdf="./data/processed/productosProcesados.pdf"
     informe_salida="./data/processed/informeEstadistico.xlsx"
 
 df=cargar_data(archivo_entrada)
 datos_limpios=limpiar_datos(df)
 os.makedirs("./data/processed", exist_ok=True)
+guardar_pdf(datos_limpios, archivo_pdf)
 guardar_data_limpia(datos_limpios, archivo_salida)
 estadistica_basica, highest_products, smallest_products, conteo_marcas = calcular_estadisticas(datos_limpios)
 guardar_estadisticas(estadistica_basica, highest_products, smallest_products, conteo_marcas, informe_salida)

@@ -1,9 +1,9 @@
 # Proyecto Final Python
 ## Sistema de Análisis de Datos de Comercio Electrónico
 
-Este proyecto realiza scraping de datos de productos de un sitio web. Los limpia y realiza un analisis de datos que posteriormente será guardado en un archivo CSV.
+Este proyecto realiza scraping de datos de productos de un sitio web. Los limpia y realiza un analisis de datos que posteriormente será guardado en un archivo CSV y Excel, respectivamente.
 
-## Requisitos.
+## Requisitos
 
 - Python 3.7+
 - pandas
@@ -13,8 +13,9 @@ Este proyecto realiza scraping de datos de productos de un sitio web. Los limpia
 - time
 - logging
 - openpyxl
+- fpdf2
 
-## Instalacion.
+## Instalacion
 
 Para instalar las dependencias se creó el archivo "dependencias.txt" en el cual se encuentran todas las dependecias necesarias para una rápida instalación.
 Su método de uso es utilizando PIP con el siguiente comando: 
@@ -23,7 +24,7 @@ Su método de uso es utilizando PIP con el siguiente comando:
 pip install -r ./dependencias.txt
 ````
 
-## Estructura de las carpetas.
+## Estructura del módulo
 
 ````bash
 PROYECTOPYTHON
@@ -31,6 +32,7 @@ PROYECTOPYTHON
 |    |- processed/
 |        |__ informeEstadistico.xlsx  
 |        |__ productosProcesados.csv  
+|        |__ productosProcesados.pdf 
 |    |- raw/
 |        |__ productos.csv
 |
@@ -47,16 +49,17 @@ PROYECTOPYTHON
 |    |- scraping/
 |        |__ __init__.py
 |        |__ scraper.py
+|
 |__ dependencias.txt
 |__ README.md
 |__ requisitosProyecto.txt    
 ````
-## Modo de Uso.
+## Modo de Uso
 
 Para el uso del Scrapping y posterior análisis de datos se pueden revisar los archivos "screper.py" y "analysis.py" respectivamente para una visualización detallada del código. También se pueden ejecutar de manera individual con las siguientes indicaciones:
 
 
-### Ejecución del Scraper.
+## Ejecución del Scraper
 
 Para ejecutar el scraper, ejecuta el siguiente comando en tu terminal:
 
@@ -66,9 +69,9 @@ python ./src/scraping/scraper.py
 
 Esto va a generar un archivo CSV en la carpeta "raw" dentro de la carpeta "data" llamado "productos.csv" con los datos de los productos obtenidos del sitio web.
 
-### Ejecución para el análisis de datos.
+## Ejecución para el análisis de datos.
 
-#### Ejecución archivo "analysis.py"
+### Ejecución archivo "analysis.py"
 
 Para ejecutar el script para análisis de datos, ejecuta el siguiente comando en tu terminal:
 
@@ -76,11 +79,12 @@ Para ejecutar el script para análisis de datos, ejecuta el siguiente comando en
 python -m src.analysis.analysis
 ````
 
-Esto va a generar un archivo CSV en la carpeta "processed" dentro de la carpeta "data" llamado "productosProcesados.csv" con los datos de los productos obtenidos del sitio web limpios y procesados. 
-Adicionalmente se generará un archivo Excel en la carpeta "processed" dentro de la carpeta "data" llamado "informaEstadistico.xlsx" con los resultados de los cálculos estadísticos. 
+Esto va a generar un archivo CSV y un archivo PDF en la carpeta "processed" dentro de la carpeta "data" llamados "productosProcesados.csv" y "productosProcesados.pdf", respectivamente. Estos archivos contienen los datos de los productos obtenidos del sitio web limpios y procesados. 
+Adicionalmente se generará un archivo Excel en la carpeta "processed" dentro de la carpeta "data" llamado "informaEstadistico.xlsx" con los resultados de los cálculos estadísticos.
 
-#### Archivo de Jupyter Notebook
+### Archivo de Jupyter Notebook
 
 Respecto a análisis de datos, en la carpeta "notebooks" se encuentra el archivo "analisisDatos.ipynb" donde también encontrarás cálculos estadísticos básicos y avanzados representados gráficamente (Histograma, gráfico de barras, diagrama de pastel). Los mismos que se pueden ejecutar directamente con la interfaz de Jupiter Notebook.
 
-#### Karen Tandazo
+#### Karen Nicole Tandazo Reyes
+#### karen_tandazo22@hotmail.com
